@@ -49,12 +49,17 @@ function fetchUserData(){
             newCell2.innerHTML = `<a href=${data.html_url} target="_blank"> ${data.name} </a>`;
             newCell3.innerHTML = data.public_repos;
             followers.then((val)=>{
-                
-                var flwList = "";
+                if(val.length!=0){
+                    var flwList = "";
                 val.forEach((val1)=>{
                     flwList += `<a href=https://github.com/${val1} target="_blank" style="color:red">${val1}</a> </br>`;
                 }); 
                 newcell4.innerHTML = flwList;
+
+            } else {
+                newcell4.innerHTML = `<p> No Followers </p>`;
+            }
+                
             });
             if(data.location === null){
                 newcell5.innerHTML = `<p>Location not available</p>`;
